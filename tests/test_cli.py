@@ -10,9 +10,13 @@ from tests import abbr_cli, _mocked_html
 class TestCommandLine(unittest.TestCase):
 
     def setUp(self):
-        self.stdout: StringIO = patch('sys.stdout', new_callable=StringIO).start()
-        self.stderr: StringIO = patch('sys.stderr', new_callable=StringIO).start()
-        patch.object(AbbreviationsClient, 'execute', return_value=(200, _mocked_html)).start()
+        self.stdout_patch = patch('sys.stdout', new_callable=StringIO)
+        self.stderr_patch = patch('sys.stderr', new_callable=StringIO)
+        self.client_patch = patch.object(AbbreviationsClient, 'execute', return_value=(200, _mocked_html))
+
+        self.stdout: StringIO = self.stdout_patch.start()
+        self.stderr: StringIO = self.stderr_patch.start()
+        self.client_patch.start()
 
     def test_help(self):
         with self.assertRaises(SystemExit):
@@ -54,6 +58,11 @@ class TestCommandLine(unittest.TestCase):
                 self.assertRegex(line, r'\(\d/\d\)')
                 self.assertIn("abbr", line)
                 self.assertIn("category", line)
+
+    def tearDown(self):
+        self.stdout_patch.stop()
+        self.stderr_patch.stop()
+        self.client_patch.stop()
 
 
 if __name__ == '__main__':

@@ -8,8 +8,11 @@ from tests import abbr_cli
 class TestBackend(unittest.TestCase):
 
     def setUp(self):
-        self.stdout: StringIO = patch('sys.stdout', new_callable=StringIO).start()
-        self.stderr: StringIO = patch('sys.stderr', new_callable=StringIO).start()
+        self.stdout_patch = patch('sys.stdout', new_callable=StringIO)
+        self.stderr_patch = patch('sys.stderr', new_callable=StringIO)
+
+        self.stdout: StringIO = self.stdout_patch.start()
+        self.stderr: StringIO = self.stderr_patch.start()
 
     def test_default(self):
         abbr_cli("example --only-words")
@@ -24,6 +27,10 @@ class TestBackend(unittest.TestCase):
         self.assertIn("don't use -r flag", self.stdout.getvalue())
         abbr_cli("ex")
         self.assertIn("use with -r flag", self.stdout.getvalue())
+
+    def tearDown(self):
+        self.stdout_patch.stop()
+        self.stderr_patch.stop()
 
 
 if __name__ == '__main__':
