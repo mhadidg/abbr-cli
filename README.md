@@ -1,3 +1,5 @@
+# abbr-cli
+
 A command-line tool to look up abbreviations for terms (and the reverse). The abbreviations (or the terms in reverse
 lookup) are extracted from [abbreviations.com](https://www.abbreviations.com).
 
@@ -25,7 +27,7 @@ $ abbr --reverse alloc
 - Install via `pip` command:
 
 ```shell
-pip install abbr-cli
+$ pip install abbr-cli
 ```
 
 ## Exploring the arguments
