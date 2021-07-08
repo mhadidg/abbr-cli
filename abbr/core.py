@@ -13,8 +13,6 @@ _color_palette = {
     'red': '#EF5350',
     'abbr': '#FFFFFF',
     'rating': '#FFFFFF',
-    'star': '#757575',
-    'starBraket': '#757575',
     'category': '#757575',
     'categorySeparator': '#757575',
 }
@@ -77,18 +75,6 @@ def main(args) -> ExitStatus:
         simple_print(words)
 
     return ExitStatus.SUCCESS
-
-
-def fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int]):
-    for abbr in words:
-        star_count = star_dict[abbr]
-        category = ', '.join(category_dict[abbr])
-        filling_spaces = (' ' * (5 - star_count))
-        print(
-            cf.starBraket(" [{}] ".format(cf.star('×' * star_count) + filling_spaces))
-            + cf.abbr(abbr)
-            + cf.categorySeparator(' ~ ')
-            + cf.category(category))
 
 
 def simplified_fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int]):
