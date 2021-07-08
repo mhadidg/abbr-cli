@@ -9,7 +9,7 @@
 
 __project_name__ = 'abbr-cli'
 __description__ = 'A command-line tool to look up abbreviations for terms (and the reverse).'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Mustapha Hadid'
 __author_email__ = 'mustapha.hadeed@gmail.com'
 __licence__ = 'MIT'
