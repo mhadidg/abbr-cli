@@ -15,6 +15,7 @@ Options:
                       Allowed values are 0-5 (inclusive) [default: 0].
   -w --only-words     List only the words (terms or abbreviations) without category
                       and rating. Helpful when used in a bash script.
+  -c --with-category  Include categories along with the word.
 
 """
 

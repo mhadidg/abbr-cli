@@ -5,14 +5,14 @@ lookup) are extracted from [abbreviations.com](https://www.abbreviations.com).
 
 ```shell
 $ abbr configuration
-(5/5) cfg ~ Miscellaneous, Computing
-(4/5) config ~ Governmental
-(-/5) conf ~ Computing
-(-/5) cnf ~ Computing
+(5/5) cfg
+(4/5) config
+(-/5) conf
+(-/5) cnf
 
 $ abbr --reverse alloc
-(3/5) Allocation ~ Governmental
-(-/5) Allocate ~ Business
+(3/5) Allocation
+(-/5) Allocate
 ```
 
 ## Table of content
@@ -34,6 +34,12 @@ $ pip install abbr-cli
 
 ```shell
 $ abbr configuration
+(5/5) cfg
+(4/5) config
+(-/5) conf
+(-/5) cnf
+
+$ abbr configuration --with-category
 (5/5) cfg ~ Miscellaneous, Computing
 (4/5) config ~ Governmental
 (-/5) conf ~ Computing
@@ -46,11 +52,11 @@ conf
 cnf
 
 $ abbr configuration --min-stars 4
-(5/5) cfg ~ Miscellaneous, Computing
-(4/5) config ~ Governmental
+(5/5) cfg
+(4/5) config
 
 $ abbr configuration --limit 1
-(5/5) cfg ~ Miscellaneous, Computing
+(5/5) cfg
 ```
 
 ## A little better than abbreviations.com
@@ -62,7 +68,7 @@ $ abbr configuration --limit 1
 
 ```shell
 # instead of getting
-$ abbr command
+$ abbr command --with-category
 (5/5) cmd ~ Governmental/NASA
 (4/5) cmd ~ Governmental/Military
 (4/5) cmd ~ Computing/DOSCommands
@@ -71,7 +77,7 @@ $ abbr command
 ...
 
 # you will get
-$ abbr command
+$ abbr command --with-category
 (4/5) cmd ~ Governmental, Computing, Miscellaneous
 ...
 ```
@@ -81,13 +87,13 @@ $ abbr command
 ```shell
 # instead of getting
 $ abbr address
-(4/5) ADD ~ Computing
-(3/5) addr ~ Computing, Miscellaneous
+(4/5) ADD
+(3/5) addr
 ...
 
 # you will get
 $ abbr address
-(4/5) add ~ Computing
-(3/5) addr ~ Computing, Miscellaneous
+(4/5) add
+(3/5) addr
 ...
 ```

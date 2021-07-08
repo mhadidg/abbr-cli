@@ -27,6 +27,7 @@ def main(args) -> ExitStatus:
     reversed_flag = args['--reverse']
     min_stars = int(args['--min-stars'])
     fancy_output = not args['--only-words']
+    include_category = args['--with-category']
     limit = int(args['--limit'])
 
     query = abbrv if reversed_flag else term
@@ -70,22 +71,22 @@ def main(args) -> ExitStatus:
     if fancy_output:
         words_stars = scraper.words_stars()
         words_categories = scraper.words_categories()
-        simplified_fancy_print(words, words_categories, words_stars)
+        fancy_print(words, words_categories, words_stars, include_category)
     else:
         simple_print(words)
 
     return ExitStatus.SUCCESS
 
 
-def simplified_fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int]):
+def fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int], include_category: bool):
     for abbr in words:
         star_count = star_dict[abbr]
         category = ', '.join(category_dict[abbr])
-        print(
-            "({}) ".format('{}/5'.format('-' if star_count == 0 else star_count))
-            + abbr
-            + cf.categorySeparator(' ~ ')
-            + cf.category(category))
+        print("({}) ".format('{}/5'.format('-' if star_count == 0 else star_count)) + abbr, end='')
+        if include_category:
+            print(cf.categorySeparator(' ~ ') + cf.category(category))
+        else:
+            print()
 
 
 def simple_print(words: list[str]):

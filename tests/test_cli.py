@@ -57,6 +57,13 @@ class TestCommandLine(unittest.TestCase):
             with self.subTest(line=line):
                 self.assertRegex(line, r'\(\d/\d\)')
                 self.assertIn("abbr", line)
+
+    def test_fancy_output_with_categories(self):
+        abbr_cli("example --with-category")
+        for line in self.stdout.getvalue().strip().split(sep='\n'):
+            with self.subTest(line=line):
+                self.assertRegex(line, r'\(\d/\d\)')
+                self.assertIn("abbr", line)
                 self.assertIn("category", line)
 
     def tearDown(self):
