@@ -3,16 +3,13 @@ import sys
 import colorful as cf
 from requests.exceptions import ConnectionError, ConnectTimeout
 
+import abbr
 from abbr.clients import AbbreviationsClient
 from abbr.exitstatus import ExitStatus
 from abbr.scrapers import XPathScraper
 
-_repo_url = 'https://github.com/mhadidg/abbr-cli'
-
 _color_palette = {
     'red': '#EF5350',
-    'abbr': '#FFFFFF',
-    'rating': '#FFFFFF',
     'category': '#757575',
     'categorySeparator': '#757575',
 }
@@ -41,7 +38,7 @@ def main(args) -> ExitStatus:
         eprint(f"Connection failed! Make sure you're connected to the internet.")
         return ExitStatus.ERROR
     except Exception:
-        eprint(f"Unexpected error! Please report the issue on {_repo_url}.")
+        eprint(f"Unexpected error! Please report the issue on {abbr.__repo_url__}.")
         return ExitStatus.ERROR
 
     if status_code == 302:
@@ -54,7 +51,7 @@ def main(args) -> ExitStatus:
     try:
         scraper = XPathScraper(html, limit, min_stars, reversed_flag)
     except Exception:
-        eprint(f"Unexpected Error! Please report the issue on {_repo_url}.")
+        eprint(f"Unexpected Error! Please report the issue on {abbr.__repo_url__}.")
         return ExitStatus.ERROR
 
     # The 'words' here could be either abbreivations or terms
@@ -79,10 +76,10 @@ def main(args) -> ExitStatus:
 
 
 def fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int], include_category: bool):
-    for abbr in words:
-        star_count = star_dict[abbr]
-        category = ', '.join(category_dict[abbr])
-        print("({}) ".format('{}/5'.format('-' if star_count == 0 else star_count)) + abbr, end='')
+    for abbrv in words:
+        star_count = star_dict[abbrv]
+        category = ', '.join(category_dict[abbrv])
+        print("({}) ".format('{}/5'.format('-' if star_count == 0 else star_count)) + abbrv, end='')
         if include_category:
             print(cf.categorySeparator(' ~ ') + cf.category(category))
         else:
@@ -90,8 +87,8 @@ def fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int]
 
 
 def simple_print(words: list[str]):
-    for abbr in words:
-        print(abbr)
+    for abbrv in words:
+        print(abbrv)
 
 
 def eprint(*args, **kwargs):

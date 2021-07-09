@@ -12,4 +12,5 @@ __description__ = 'A command-line tool to look up abbreviations for terms (and t
 __version__ = '1.0.3'
 __author__ = 'Mustapha Hadid'
 __author_email__ = 'mustapha.hadeed@gmail.com'
+__repo_url__ = 'https://github.com/mhadidg/abbr-cli'
 __licence__ = 'MIT'

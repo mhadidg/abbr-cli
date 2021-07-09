@@ -1,4 +1,4 @@
-"""Look up abbreviations for terms (or the reverse).
+"""Look up abbreviations for terms.
 
 Usage:
   abbr [options] <term>

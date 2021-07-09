@@ -3,9 +3,9 @@ import requests
 
 class BackendClient(object):
 
-    def __init__(self, query: str, _reversed: bool = False, order=0):
+    def __init__(self, query: str, reversed_flag: bool = False, order=0):
         self.query = query
-        self.reversed = _reversed
+        self.reversed = reversed_flag
         self.order = order
 
     def execute(self) -> tuple[int, str]:
@@ -15,8 +15,8 @@ class BackendClient(object):
 class AbbreviationsClient(BackendClient):
     base_url = "https://www.abbreviations.com"
 
-    def __init__(self, query: str, _reversed: bool = False, order=0):
-        super().__init__(query, _reversed, order)
+    def __init__(self, query: str, reversed_flag: bool = False, order=0):
+        super().__init__(query, reversed_flag, order)
 
     def execute(self):
         query_type = 1 if self.reversed else 2  # allowed valuae are 1 (abbr->term) or 2 (term->abbr)

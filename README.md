@@ -1,9 +1,9 @@
 # abbr-cli
 
-A command-line tool to look up abbreviations for terms (and the reverse). The abbreviations (or the terms in reverse
-lookup) are extracted from [abbreviations.com](https://www.abbreviations.com).
+A command-line tool to look up abbreviations for terms (and the reverse). The abbreviations, or the terms in reverse
+lookup, are extracted from [abbreviations.com](https://www.abbreviations.com).
 
-```shell
+```
 $ abbr configuration
 (5/5) cfg
 (4/5) config
@@ -19,6 +19,8 @@ $ abbr --reverse alloc
 
 - [Installation](#installation)
 - [Exploring the arguments](#exploring-the-arguments)
+    - [The documentation](#the-documentation)
+    - [...In action](#in-action)
 - [A little better than abbreviations.com](#a-little-better-than-abbreviationscom)
 
 ## Installation
@@ -26,13 +28,39 @@ $ abbr --reverse alloc
 - Python version 3.6 or greater is required.
 - Install via `pip` command:
 
-```shell
+```
 $ pip install abbr-cli
 ```
 
 ## Exploring the arguments
 
-```shell
+### The documentation
+
+```
+$ abbr -h
+Look up abbreviations for terms.
+
+Usage:
+  abbr [options] <term>
+  abbr [options] -r <abbreviation>
+  abbr (-h | --help)
+  abbr --version
+
+Options:
+  --version           Show version.
+  -h --help           Show this screen.
+  -r --reverse        Reverse the look up. Find terms for an abbreviation.
+  -n --limit <n>      Limit the number of result [default: 25].
+  -m --min-stars <m>  Include only items with number of stars equal or above <m>.
+                      Allowed values are 0-5 (inclusive) [default: 0].
+  -w --only-words     List only the words (terms or abbreviations) without category
+                      and rating. Helpful when used in a bash script.
+  -c --with-category  Include categories along with the word.
+```
+
+### ...In action
+
+```
 $ abbr configuration
 (5/5) cfg
 (4/5) config
@@ -62,11 +90,11 @@ $ abbr configuration --limit 1
 ## A little better than abbreviations.com
 
 - No duplicates.
-- Abbreviations with a single charater are removed.
-- A single abbreviation (or term in case of `--reverise` flag) with multiple cateogries (and sometimes subcategories)
+- Single-character abbreviations are excluded.
+- A single abbreviation (or term in case of `--reverse` flag) with multiple categories (and sometimes subcategories)
   are merged in a single line. Subcategories are removed to avoid clutter. The rating will be the average rating.
 
-```shell
+```
 # instead of getting
 $ abbr command --with-category
 (5/5) cmd ~ Governmental/NASA
@@ -82,18 +110,4 @@ $ abbr command --with-category
 ...
 ```
 
-- Abbreviations are normalized to lowercase, while terms are normatlized to title case.
-
-```shell
-# instead of getting
-$ abbr address
-(4/5) ADD
-(3/5) addr
-...
-
-# you will get
-$ abbr address
-(4/5) add
-(3/5) addr
-...
-```
+- Abbreviations are normalized to lowercase, while terms are normalized to title case.
