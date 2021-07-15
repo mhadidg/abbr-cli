@@ -1,3 +1,4 @@
+from typing import Dict, List, Set
 import sys
 
 from lxml import etree
@@ -49,13 +50,13 @@ class BaseScraper(object):
         word = self.normalize(word)
         self._words_categories[word] = self._words_categories.get(word, set()) | {category}
 
-    def words(self) -> list[str]:
+    def words(self) -> List[str]:
         return self._words
 
-    def words_stars(self) -> dict[int]:
+    def words_stars(self) -> Dict[str, int]:
         return self._words_stars
 
-    def words_categories(self) -> dict[set]:
+    def words_categories(self) -> Dict[str, Set[str]]:
         return self._words_categories
 
 
