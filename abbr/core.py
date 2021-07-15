@@ -1,3 +1,4 @@
+from typing import Dict, List, Set
 import sys
 
 import colorful as cf
@@ -75,7 +76,7 @@ def main(args) -> ExitStatus:
     return ExitStatus.SUCCESS
 
 
-def fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int], include_category: bool):
+def fancy_print(words: List[str], category_dict: Dict[str, Set[str]], star_dict: Dict[str, int], include_category: bool):
     for abbrv in words:
         star_count = star_dict[abbrv]
         category = ', '.join(category_dict[abbrv])
@@ -86,7 +87,7 @@ def fancy_print(words: list[str], category_dict: dict[set], star_dict: dict[int]
             print()
 
 
-def simple_print(words: list[str]):
+def simple_print(words: List[str]):
     for abbrv in words:
         print(abbrv)
 
