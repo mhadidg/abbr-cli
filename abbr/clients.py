@@ -1,3 +1,4 @@
+from typing import Tuple
 import requests
 
 
@@ -8,7 +9,7 @@ class BackendClient(object):
         self.reversed = reversed_flag
         self.order = order
 
-    def execute(self) -> tuple[int, str]:
+    def execute(self) -> Tuple[int, str]:
         pass
 
 
